@@ -1,22 +1,27 @@
 import java.util.*;
 
 public class Elevator {
-    static int elevatorNum = 0;
-    private int mCurrentFloor;
+    static int elevatorNum = 1;
+    private int mCurrentFloor = 1;
     private int mDestinationFloor;
     private int mElevatorNum;
     private Set<Integer> passengers = new HashSet<Integer>();
     private currentState mCurrentState;
     private currentDirection mCurrentDirection;
 
-    public Elevator(int mElevatorNum, String a){
+    public Elevator(int mElevatorNum, String buildingReference){
         mCurrentState = currentState.IDLE_STATE;
         mCurrentDirection = currentDirection.NOT_MOVING;
+        mElevatorNum = elevatorNum;
         elevatorNum++;
     }
 
     public int getmCurrentFloor() {
         return mCurrentFloor;
+    }
+
+    public int getmElevatorNum(){
+        return mElevatorNum;
     }
 
     enum currentDirection {
@@ -60,6 +65,6 @@ public class Elevator {
     // represents the overall state of the elevator
     public String toString(){
         return "Elevator " + mElevatorNum + " - Floor " + mCurrentFloor + " - " + mCurrentState + " - " +
-                mCurrentDirection + " - Passengers ";
+                mCurrentDirection + " - Passengers " + passengers;
     }
 }

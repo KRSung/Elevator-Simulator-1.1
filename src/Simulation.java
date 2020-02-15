@@ -5,9 +5,8 @@ public class Simulation {
     static Random mRandom;
 
     public static void main(String[] args) {
-        int userNum = -1;
         int seedValue, numFloors, numElevators;
-        int stepNum = 1;
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter a seed value: ");
         while(!sc.hasNextInt()){
@@ -23,14 +22,20 @@ public class Simulation {
 
         Random rand = new Random(seedValue);
         Simulation.mRandom = rand;
-        System.out.println(mRandom);
 
         Building kyleCorp = new Building(numFloors, numElevators);
 
-//        while(userNum != 0){
-//            System.out.println("Simulate how many steps? ");
-//            System.out.println("Step " + stepNum);
-//        }
+        int userNum = -1;
+        int stepNum = 1;
+        while(userNum != 0){
+            System.out.println("Simulate how many steps? ");
+            userNum = sc.nextInt();
 
+            for(int i = 0; i < userNum; i++){
+                System.out.println("Step " + stepNum);
+                kyleCorp.tick();
+                stepNum++;
+            }
+        }
     }
 }
