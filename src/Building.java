@@ -15,16 +15,17 @@ public class Building {
             this.allFloors.add(new ArrayList<Integer>());
         }
         for (int i = 0; i < numElevators; i++){
-            this.elevatorArrayList.add(new Elevator(i + 1 , building));
+            this.elevatorArrayList.add(new Elevator(i + 1 , this));
         }
     }
 
-//  returns the array list of a floors passengers
+//    returns the array list of a floors passengers
+//    FIXME: NullPointerException
     public ArrayList<Integer> getFloor(int floorNumber){
         return allFloors.get( floorNumber - 1 );
     }
 
-//  returns a string representing the state of the building, and all its floors and all its elevators
+//    returns a string representing the state of the building, and all its floors and all its elevators
     public String toString(){
         String visualRepresentation = "";
         for (int i = 0; i < numElevators; i++){
@@ -36,23 +37,29 @@ public class Building {
 //  updates the state of the building by spawning in passengers
     public void tick(){
         int randNum;
-        randNum = Simulation.mRandom.nextInt(20);
+        for(int i = 0; i < allFloors.size(); i++){
 //        spawns a passenger if the random number generated == 0
-        if (randNum == 0){
+            randNum = Simulation.mRandom.nextInt(20);
+            if (randNum == 0) {
 //            continuously loops until a passenger spawns on a floor that does not contain an elevator
-            while(true){
-                randNum = Simulation.mRandom.nextInt(numFloors + 1);
-                if (randNum != elevatorArrayList.get(0).getmCurrentFloor()){
-                    System.out.println("Adding person with destination " + randNum + " to floor "
-                            + elevatorArrayList.get(0).getmCurrentFloor());
-                    allFloors.get(0).add(randNum);
-                    break;
+                while(true){
+                    randNum = Simulation.mRandom.nextInt(numFloors + 1);
+                    if (randNum != i){
+                        System.out.println("Adding person with destination " + randNum + " to floor "
+                                + (i + 1));
+                        allFloors.get(i).add(randNum);
+                        break;
+                    }
                 }
             }
         }
+
+//        updates all elevators.
         for(int i = 0; i < elevatorArrayList.size(); i++){
             elevatorArrayList.get(i).tick();
         }
+
+//        prints the buildings layout
         System.out.println(toString());
     }
 }

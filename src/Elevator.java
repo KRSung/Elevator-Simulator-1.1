@@ -8,8 +8,9 @@ public class Elevator {
     private Set<Integer> passengers = new HashSet<Integer>();
     private currentState mCurrentState;
     private currentDirection mCurrentDirection;
+    private Building mReference;
 
-    public Elevator(int mElevatorNum, String buildingReference){
+    public Elevator(int mElevatorNum, Building reference){
         mCurrentState = currentState.IDLE_STATE;
         mCurrentDirection = currentDirection.NOT_MOVING;
         mElevatorNum = elevatorNum;
@@ -42,10 +43,16 @@ public class Elevator {
     }
 
     // updates the current state of the elevator
+//    TODO: finish the switch cases
     public void tick(){
         switch (mCurrentState){
             case IDLE_STATE:
-                mCurrentState = currentState.ACCELERATING;
+                if(passengers.size() > 0){
+                    mCurrentState = currentState.ACCELERATING;
+                }
+//                else if(mReference.getFloor(mCurrentFloor).size() > 0){
+//                    mCurrentState = currentState.DOORS_OPENING;
+//                }
                 break;
             case DOORS_OPENING:
                 mCurrentState = currentState.UNLOADING_PASSENGERS;
