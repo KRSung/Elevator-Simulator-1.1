@@ -42,6 +42,7 @@ public class Building {
 //            continuously loops until a passenger spawns on a floor that does not contain an elevator
                 while(true){
                     randNum = Simulation.mRandom.nextInt(numFloors + 1);
+//                    if true, spawns a person
                     if (randNum != i){
                         System.out.println("Adding person with destination " + randNum + " to floor "
                                 + (i + 1));
@@ -53,8 +54,8 @@ public class Building {
         }
 
 //        updates all elevators.
-        for(int i = 0; i < elevatorArrayList.size(); i++){
-            elevatorArrayList.get(i).tick();
+        for(Elevator i: elevatorArrayList){
+            i.tick();
         }
 
 //        prints the buildings layout
