@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class Building {
-//  private ArrayList<Integer> floor = new ArrayList<>();
     private ArrayList<ArrayList<Integer>> allFloors = new ArrayList<>();
     private ArrayList<Elevator> elevatorArrayList = new ArrayList<>();
     private int numFloors, numElevators;
@@ -20,7 +19,6 @@ public class Building {
     }
 
 //    returns the array list of a floors passengers
-//    FIXME: NullPointerException
     public ArrayList<Integer> getFloor(int floorNumber){
         return allFloors.get( floorNumber - 1 );
     }

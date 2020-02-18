@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Elevator {
-    static int elevatorNum = 1;
     private int mCurrentFloor = 1;
     private int mDestinationFloor;
     private int mElevatorNum;
@@ -10,11 +9,11 @@ public class Elevator {
     private currentDirection mCurrentDirection;
     private Building mReference;
 
-    public Elevator(int mElevatorNum, Building reference){
+    public Elevator(int elevatorNum, Building reference){
         mCurrentState = currentState.IDLE_STATE;
         mCurrentDirection = currentDirection.NOT_MOVING;
+        mReference = reference;
         mElevatorNum = elevatorNum;
-        elevatorNum++;
     }
 
     public int getmCurrentFloor() {
@@ -50,9 +49,9 @@ public class Elevator {
                 if(passengers.size() > 0){
                     mCurrentState = currentState.ACCELERATING;
                 }
-//                else if(mReference.getFloor(mCurrentFloor).size() > 0){
-//                    mCurrentState = currentState.DOORS_OPENING;
-//                }
+                else if(mReference.getFloor(mCurrentFloor).size() > 0){
+                    mCurrentState = currentState.DOORS_OPENING;
+                }
                 break;
             case DOORS_OPENING:
                 mCurrentState = currentState.UNLOADING_PASSENGERS;

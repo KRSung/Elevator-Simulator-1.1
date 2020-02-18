@@ -28,7 +28,8 @@ public class Simulation {
         int userNum = -1;
         int stepNum = 1;
         while(userNum != 0){
-            System.out.println("Simulate how many steps? ");
+
+        System.out.println("Simulate how many steps? ");
             userNum = sc.nextInt();
 
             for(int i = 0; i < userNum; i++){
