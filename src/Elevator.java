@@ -44,6 +44,7 @@ public class Elevator {
     // updates the current state of the elevator
 //    TODO: finish the switch cases
     public void tick(){
+        ArrayList<Integer> buildingFloor = mReference.getFloor(mCurrentFloor);
         switch (mCurrentState){
             case IDLE_STATE:
                 if(passengers.size() > 0){
@@ -83,19 +84,64 @@ public class Elevator {
 
 //            FiXME: finish the Loading passengers stage
             case LOADING_PASSENGERS:
+                if(mCurrentDirection == currentDirection.NOT_MOVING && buildingFloor != null){
+                    passengers.put(buildingFloor.get(0), 1);
+                    if(buildingFloor.get(0) > mCurrentFloor){
+                        mCurrentDirection = currentDirection.UP;
+                        buildingFloor.remove(0);
+                    }
+                }
+//                checks if the current directions is up, if so adds passengers going up to the elevator
+//                removes passenger from building floor
                 if(mCurrentDirection == currentDirection.UP){
-                    for (int i: mReference.getFloor(mCurrentFloor)) {
-                        if( passengers.containsKey(i) ){
+                    for (int i: buildingFloor) {
+//                        checks if the passenger already exists in the map
+                        if( passengers.containsKey(i) && i > mCurrentFloor){
                             passengers.replace(i, passengers.get(i) + 1);
+                            buildingFloor.remove(i);
                         }
-                        else{
+//                        adds  not yet existing passenger to the map removes passenger from building floor
+                        else if (i > mCurrentFloor){
                             passengers.put(i, 1);
+                            buildingFloor.remove(i);
                         }
                     }
                 }
 
+//                checks if the current directions is down, if so adds passengers going down to the elevator
+//                removes passenger from building floor
+                if(mCurrentDirection == currentDirection.DOWN){
+                    for (int i: buildingFloor) {
+//                        checks if the passenger already exists in the map
+                        if( passengers.containsKey(i) && i < mCurrentFloor){
+                            passengers.replace(i, passengers.get(i) + 1);
+                            buildingFloor.remove(i);
+                        }
+//                        adds not yet existing passenger to the map removes passenger from building floor
+                        else if (i < mCurrentFloor){
+                            passengers.put(i, 1);
+                            buildingFloor.remove(i);
+                        }
+                    }
+                }
+
+            case DOORS_CLOSING:
+                if(passengers.size() > 0){
+                    mCurrentState = currentState.ACCELERATING;
+                }
+                else{
+                    mCurrentState = currentState.IDLE_STATE;
+                }
+                break;
+
+            case ACCELERATING:
+                mCurrentState = currentState.MOVING;
+
             case DECELERATING:
                 mCurrentState = currentState.DOORS_OPENING;
+                if (passengers.size() == 0){
+                    mCurrentDirection = currentDirection.NOT_MOVING;
+                }
                 break;
 
             default:

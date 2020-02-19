@@ -35,6 +35,7 @@ public class Building {
 //  updates the state of the building by spawning in passengers
     public void tick(){
         int randNum;
+        boolean passengerSpawned = false;
         for(int i = 0; i < allFloors.size(); i++){
 //        spawns a passenger if the random number generated == 0
             randNum = Simulation.mRandom.nextInt(20);
@@ -47,9 +48,13 @@ public class Building {
                         System.out.println("Adding person with destination " + randNum + " to floor "
                                 + (i + 1));
                         allFloors.get(i).add(randNum);
+                        passengerSpawned = true;
                         break;
                     }
                 }
+            }
+            if(passengerSpawned){
+                break;
             }
         }
 
