@@ -42,7 +42,6 @@ public class Elevator {
     }
 
     // updates the current state of the elevator
-//    TODO: finish the switch cases
     public void tick(){
         ArrayList<Integer> buildingFloor = mReference.getFloor(mCurrentFloor);
         switch (mCurrentState){
@@ -84,10 +83,19 @@ public class Elevator {
 
 //            FiXME: finish the Loading passengers stage
             case LOADING_PASSENGERS:
+//                if the current direction is not moving and the building floor contains waiting passengers
                 if(mCurrentDirection == currentDirection.NOT_MOVING && buildingFloor != null){
                     passengers.put(buildingFloor.get(0), 1);
+//                    if the first passenger is heading up set the destination floor and direction
                     if(buildingFloor.get(0) > mCurrentFloor){
                         mCurrentDirection = currentDirection.UP;
+                        mDestinationFloor = buildingFloor.get(0);
+                        buildingFloor.remove(0);
+                    }
+//                    if the fist passenger is heading down set the destination floor and direction
+                    else if(buildingFloor.get(0) < mCurrentFloor){
+                        mCurrentDirection = currentDirection.DOWN;
+                        mDestinationFloor = buildingFloor.get(0);
                         buildingFloor.remove(0);
                     }
                 }
@@ -125,6 +133,8 @@ public class Elevator {
                     }
                 }
 
+                break;
+
             case DOORS_CLOSING:
                 if(passengers.size() > 0){
                     mCurrentState = currentState.ACCELERATING;
@@ -136,6 +146,20 @@ public class Elevator {
 
             case ACCELERATING:
                 mCurrentState = currentState.MOVING;
+
+            case MOVING:
+                if (mCurrentDirection == currentDirection.UP){
+                    mCurrentFloor += 1;
+                }
+                else {
+                    mCurrentFloor -= 1;
+                }
+
+                if ( passengers.containsKey(mCurrentFloor)){
+                    mCurrentState = currentState.DECELERATING;
+                }
+
+                break;
 
             case DECELERATING:
                 mCurrentState = currentState.DOORS_OPENING;
