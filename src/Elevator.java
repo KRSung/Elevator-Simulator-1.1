@@ -81,7 +81,6 @@ public class Elevator {
                 }
                 break;
 
-//            FiXME: finish the Loading passengers stage
             case LOADING_PASSENGERS:
 //                if the current direction is not moving and the building floor contains waiting passengers
                 if(mCurrentDirection == currentDirection.NOT_MOVING && buildingFloor != null){
@@ -102,33 +101,39 @@ public class Elevator {
 //                checks if the current directions is up, if so adds passengers going up to the elevator
 //                removes passenger from building floor
                 if(mCurrentDirection == currentDirection.UP){
-                    for (int i: buildingFloor) {
+                    int buildingIndex = 0;
+//                    FIXME Removing passengers from the floor makes the for each loop go out of bounds
+                    for (int person: buildingFloor) {
 //                        checks if the passenger already exists in the map
-                        if( passengers.containsKey(i) && i > mCurrentFloor){
-                            passengers.replace(i, passengers.get(i) + 1);
-                            buildingFloor.remove(i);
+                        if( passengers.containsKey(person) && person > mCurrentFloor){
+                            passengers.replace(person, passengers.get(person) + 1);
+                            buildingFloor.remove(buildingIndex);
                         }
 //                        adds  not yet existing passenger to the map removes passenger from building floor
-                        else if (i > mCurrentFloor){
-                            passengers.put(i, 1);
-                            buildingFloor.remove(i);
+                        else if (person > mCurrentFloor){
+                            System.out.println(buildingFloor.size());
+                            passengers.put(person, 1);
+                            System.out.println(passengers);
+                            buildingFloor.remove(buildingIndex);
                         }
+                        buildingIndex++;
                     }
                 }
 
 //                checks if the current directions is down, if so adds passengers going down to the elevator
 //                removes passenger from building floor
                 if(mCurrentDirection == currentDirection.DOWN){
-                    for (int i: buildingFloor) {
-//                        checks if the passenger already exists in the map
-                        if( passengers.containsKey(i) && i < mCurrentFloor){
-                            passengers.replace(i, passengers.get(i) + 1);
-                            buildingFloor.remove(i);
+                    int buildingIndex = 0;
+                    for (int person: buildingFloor) {
+//                        checks if the passenger already exists in the map if so value++
+                        if( passengers.containsKey(person) && person < mCurrentFloor){
+                            passengers.replace(person, passengers.get(person) + 1);
+                            buildingFloor.remove(buildingIndex);
                         }
 //                        adds not yet existing passenger to the map removes passenger from building floor
-                        else if (i < mCurrentFloor){
-                            passengers.put(i, 1);
-                            buildingFloor.remove(i);
+                        else if (person < mCurrentFloor){
+                            passengers.put(person, 1);
+                            buildingFloor.remove(buildingIndex);
                         }
                     }
                 }
