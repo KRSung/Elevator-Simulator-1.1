@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+import java.util.*;
+import java.lang.*;
 
 public class Building {
     private ArrayList<ArrayList<Integer>> allFloors = new ArrayList<>();
@@ -26,6 +27,10 @@ public class Building {
 //    returns a string representing the state of the building, and all its floors and all its elevators
     public String toString(){
         String visualRepresentation = "";
+//        TODO finish the toString method for displaying floors
+        for (int i = 0; i < numFloors; i++){
+            visualRepresentation = (i+1) + ":  | \n";
+        }
         for (int i = 0; i < numElevators; i++){
             visualRepresentation = visualRepresentation + elevatorArrayList.get(i) + "\n";
         }
