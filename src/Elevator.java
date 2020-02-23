@@ -126,20 +126,39 @@ public class Elevator {
 
 //                checks if the current directions is down, if so adds passengers going down to the elevator
 //                removes passenger from building floor
+//                if(mCurrentDirection == currentDirection.MOVING_DOWN && buildingFloor.size() != 0){
+//                    int buildingIndex = 0;
+//                    for (int person: buildingFloor) {
+////                        checks if the passenger already exists in the map if so value++
+//                        if( passengers.containsKey(person) && person < mCurrentFloor){
+//                            passengers.replace(person, passengers.get(person) + 1);
+//                            buildingFloor.remove(buildingIndex);
+//                        }
+////                        adds not yet existing passenger to the map removes passenger from building floor
+//                        else if (person < mCurrentFloor){
+//                            passengers.put(person, 1);
+//                            buildingFloor.remove(buildingIndex);
+//                        }
+//                        buildingIndex++;
+//                        if (buildingFloor.size() == 0){
+//                            break;
+//                        }
+//                    }
+//                }
+
                 if(mCurrentDirection == currentDirection.MOVING_DOWN && buildingFloor.size() != 0){
                     int buildingIndex = 0;
-                    for (int person: buildingFloor) {
+                    for (int i = 0; i < buildingFloor.size(); i++) {
 //                        checks if the passenger already exists in the map if so value++
-                        if( passengers.containsKey(person) && person < mCurrentFloor){
-                            passengers.replace(person, passengers.get(person) + 1);
-                            buildingFloor.remove(buildingIndex);
+                        if( passengers.containsKey(buildingFloor.get(i)) && buildingFloor.get(i) < mCurrentFloor){
+                            passengers.replace(buildingFloor.get(i), passengers.get(buildingFloor.get(i)) + 1);
+                            buildingFloor.remove(buildingFloor.get(i));
                         }
 //                        adds not yet existing passenger to the map removes passenger from building floor
-                        else if (person < mCurrentFloor){
-                            passengers.put(person, 1);
-                            buildingFloor.remove(buildingIndex);
+                        else if (buildingFloor.get(i) < mCurrentFloor){
+                            passengers.put(buildingFloor.get(i), 1);
+                            buildingFloor.remove(buildingFloor.get(i));
                         }
-                        buildingIndex++;
                         if (buildingFloor.size() == 0){
                             break;
                         }

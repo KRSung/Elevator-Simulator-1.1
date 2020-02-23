@@ -4,7 +4,8 @@
     <list default="true" id="46739cd6-783d-4906-bea1-210b71456269" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ElevatorSimulator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ElevatorSimulator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Building.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ElevatorSimulator/Elevator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ElevatorSimulator/Elevator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Elevator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Elevator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +78,50 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="617" y="215" key="#Project_Structure" timestamp="1582416919592">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="617" y="215" key="#Project_Structure/0.0.2048.1112/-1920.29.1920.1040@0.0.2048.1112" timestamp="1582416919592" />
+    <state x="805" y="311" key="FileChooserDialogImpl" timestamp="1582428598999">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="805" y="311" key="FileChooserDialogImpl/0.0.2048.1112/-1920.29.1920.1040@0.0.2048.1112" timestamp="1582428598999" />
+    <state width="2005" height="334" key="GridCell.Tab.0.bottom" timestamp="1582431622427">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="334" key="GridCell.Tab.0.bottom/0.0.2048.1112/-1920.29.1920.1040@0.0.2048.1112" timestamp="1582431622427" />
+    <state width="2005" height="334" key="GridCell.Tab.0.center" timestamp="1582431622427">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="334" key="GridCell.Tab.0.center/0.0.2048.1112/-1920.29.1920.1040@0.0.2048.1112" timestamp="1582431622427" />
+    <state width="2005" height="334" key="GridCell.Tab.0.left" timestamp="1582431622427">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="334" key="GridCell.Tab.0.left/0.0.2048.1112/-1920.29.1920.1040@0.0.2048.1112" timestamp="1582431622427" />
+    <state width="2005" height="334" key="GridCell.Tab.0.right" timestamp="1582431622427">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="334" key="GridCell.Tab.0.right/0.0.2048.1112/-1920.29.1920.1040@0.0.2048.1112" timestamp="1582431622427" />
+    <state width="2005" height="444" key="GridCell.Tab.1.bottom" timestamp="1582431271075">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="444" key="GridCell.Tab.1.bottom/0.0.2048.1112/-1920.29.1920.1040@0.0.2048.1112" timestamp="1582431271075" />
+    <state width="2005" height="444" key="GridCell.Tab.1.center" timestamp="1582431271075">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="444" key="GridCell.Tab.1.center/0.0.2048.1112/-1920.29.1920.1040@0.0.2048.1112" timestamp="1582431271075" />
+    <state width="2005" height="444" key="GridCell.Tab.1.left" timestamp="1582431271075">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="444" key="GridCell.Tab.1.left/0.0.2048.1112/-1920.29.1920.1040@0.0.2048.1112" timestamp="1582431271075" />
+    <state width="2005" height="444" key="GridCell.Tab.1.right" timestamp="1582431271075">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="444" key="GridCell.Tab.1.right/0.0.2048.1112/-1920.29.1920.1040@0.0.2048.1112" timestamp="1582431271075" />
+    <state x="505" y="131" key="SettingsEditor" timestamp="1582330502858">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="505" y="131" key="SettingsEditor/0.0.2048.1112/-1920.29.1920.1040@0.0.2048.1112" timestamp="1582330502858" />
     <state x="591" y="302" key="com.intellij.ide.util.TipDialog" timestamp="1582048893646">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -85,5 +130,44 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="738" y="417" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1582055746085" />
+    <state x="710" y="285" width="628" height="542" key="find.popup" timestamp="1582413075829">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="710" y="285" width="628" height="542" key="find.popup/0.0.2048.1112/-1920.29.1920.1040@0.0.2048.1112" timestamp="1582413075829" />
+    <state x="465" y="155" key="new project wizard" timestamp="1582430673778">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="465" y="155" key="new project wizard/0.0.2048.1112/-1920.29.1920.1040@0.0.2048.1112" timestamp="1582430673778" />
+    <state x="687" y="243" width="672" height="678" key="search.everywhere.popup" timestamp="1582410334712">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="687" y="243" width="672" height="678" key="search.everywhere.popup/0.0.2048.1112/-1920.29.1920.1040@0.0.2048.1112" timestamp="1582410334712" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Building.java</url>
+          <line>69</line>
+          <properties class="Building" method="spawnFloorEqualsElevatorFloor">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Elevator.java</url>
+          <line>130</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="randNum" language="JAVA" />
+        <watch expression="!randNumEqualsElevatorFloor(randNum)" language="JAVA" />
+        <watch expression="elevatorArrayList.get(i).getmCurrentFloor()" language="JAVA" />
+        <watch expression="person" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
