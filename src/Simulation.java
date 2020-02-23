@@ -2,7 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Simulation {
-    static Random mRandom;
+    public static Random mRandom;
 
     public static void main(String[] args) {
         int seedValue, numFloors, numElevators;

@@ -5,12 +5,12 @@ public class Elevator {
     private int mDestinationFloor;
     private int mElevatorNum;
     private HashMap<Integer, Integer> passengers = new HashMap<>();
-    private currentState mCurrentState;
+    private currentState mCurrentState, mPreviousState;
     private currentDirection mCurrentDirection;
     private Building mReference;
 
     public Elevator(int elevatorNum, Building reference){
-        mCurrentState = currentState.IDLE_STATE;
+        mCurrentState  = mPreviousState = currentState.IDLE_STATE;
         mCurrentDirection = currentDirection.NOT_MOVING;
         mReference = reference;
         mElevatorNum = elevatorNum;
@@ -20,17 +20,17 @@ public class Elevator {
         return mCurrentFloor;
     }
 
-    public int getmElevatorNum(){
-        return mElevatorNum;
-    }
+//    public int getmElevatorNum(){
+//        return mElevatorNum;
+//    }
 
     public Map getPassengers(){
         return passengers;
     }
 
     enum currentDirection {
-        UP,
-        DOWN,
+        MOVING_UP,
+        MOVING_DOWN,
         NOT_MOVING
     }
 
@@ -76,8 +76,8 @@ public class Elevator {
                     mCurrentDirection = currentDirection.NOT_MOVING;
                 }
                 if (mCurrentDirection == currentDirection.NOT_MOVING ||
-                        (floorPassengersUp() && mCurrentDirection == currentDirection.UP) ||
-                        (floorPassengersDown() && mCurrentDirection == currentDirection.DOWN)){
+                        (floorPassengersUp() && mCurrentDirection == currentDirection.MOVING_UP) ||
+                        (floorPassengersDown() && mCurrentDirection == currentDirection.MOVING_DOWN)){
                     mCurrentState = currentState.LOADING_PASSENGERS;
                 }
                 else{
@@ -91,20 +91,20 @@ public class Elevator {
                     passengers.put(buildingFloor.get(0), 1);
 //                    if the first passenger is heading up set the destination floor and direction
                     if(buildingFloor.get(0) > mCurrentFloor){
-                        mCurrentDirection = currentDirection.UP;
+                        mCurrentDirection = currentDirection.MOVING_UP;
                         mDestinationFloor = buildingFloor.get(0);
                         buildingFloor.remove(0);
                     }
 //                    if the fist passenger is heading down set the destination floor and direction
                     else if(buildingFloor.get(0) < mCurrentFloor){
-                        mCurrentDirection = currentDirection.DOWN;
+                        mCurrentDirection = currentDirection.MOVING_DOWN;
                         mDestinationFloor = buildingFloor.get(0);
                         buildingFloor.remove(0);
                     }
                 }
 //                checks if the current directions is up, if so adds passengers going up to the elevator
 //                removes passenger from building floor
-                if(mCurrentDirection == currentDirection.UP && buildingFloor.size() != 0){
+                if(mCurrentDirection == currentDirection.MOVING_UP && buildingFloor.size() != 0){
                     int buildingIndex = 0;
                     for (int person: buildingFloor) {
 //                        checks if the passenger already exists in the map
@@ -126,7 +126,7 @@ public class Elevator {
 
 //                checks if the current directions is down, if so adds passengers going down to the elevator
 //                removes passenger from building floor
-                if(mCurrentDirection == currentDirection.DOWN && buildingFloor.size() != 0){
+                if(mCurrentDirection == currentDirection.MOVING_DOWN && buildingFloor.size() != 0){
                     int buildingIndex = 0;
                     for (int person: buildingFloor) {
 //                        checks if the passenger already exists in the map if so value++
@@ -160,16 +160,23 @@ public class Elevator {
 
             case ACCELERATING:
                 mCurrentState = currentState.MOVING;
+                mPreviousState = currentState.MOVING;
+                break;
 
             case MOVING:
-                if (mCurrentDirection == currentDirection.UP){
-                    mCurrentFloor += 1;
-                }
-                else {
-                    mCurrentFloor -= 1;
+                if(mPreviousState == currentState.MOVING){
+                    if (mCurrentDirection == currentDirection.MOVING_UP){
+                        mCurrentFloor += 1;
+                    }
+                    else {
+                        mCurrentFloor -= 1;
+                    }
                 }
 
-                if ( passengers.containsKey(mCurrentFloor)){
+//                Stops if there is a passenger arriving on the current floor
+                if ( passengers.containsKey(mCurrentFloor) ||
+                        (floorPassengersDown() && mCurrentDirection == currentDirection.MOVING_DOWN) ||
+                        (floorPassengersUp() && mCurrentDirection == currentDirection.MOVING_UP)){
                     mCurrentState = currentState.DECELERATING;
                 }
 
