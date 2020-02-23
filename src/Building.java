@@ -27,7 +27,6 @@ public class Building {
 //    returns a string representing the state of the building, and all its floors and all its elevators
     public String toString(){
         String visualRepresentation = "";
-//        TODO finish the toString method for displaying floors
         for (int i = allFloors.size(); i > 0; i--){
 
 //            adds a padding so the floor numbers line up visually

@@ -8,7 +8,7 @@ public class Simulation {
         int seedValue, numFloors, numElevators;
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter a seed value: ");
+        System.out.print("Please enter a seed value: ");
         while(!sc.hasNextInt()){
             System.out.println("Error value must be and integer");
             System.out.println("Enter a seed value: ");
@@ -28,7 +28,7 @@ public class Simulation {
         int userNum = -1;
         int stepNum = 1;
         while(userNum != 0){
-            System.out.println("Simulate how many steps? ");
+            System.out.print("Simulate how many steps? ");
             userNum = sc.nextInt();
 
             for(int i = 0; i < userNum; i++){
