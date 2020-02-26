@@ -1,5 +1,5 @@
 import java.util.*;
-import java.lang.*;
+//import java.lang.*;
 
 public class Building {
     private ArrayList<ArrayList<Integer>> allFloors = new ArrayList<>();
@@ -8,7 +8,6 @@ public class Building {
 
     // constructs a building with the user inputting the amount of floors and elevators in the building.
     public Building(int numFloors, int numElevators){
-        String building = "Kyle Corp.";
         this.numFloors = numFloors;
         this.numElevators = numElevators;
         for (int i = 0; i < numFloors; i++){
@@ -26,55 +25,43 @@ public class Building {
 
 //    returns a string representing the state of the building, and all its floors and all its elevators
     public String toString(){
-        String visualRepresentation = "";
+        StringBuilder visualRepresentation = new StringBuilder();
         for (int i = allFloors.size(); i > 0; i--){
 
 //            adds a padding so the floor numbers line up visually
             if (i < 10){
-                visualRepresentation += "  " + (i) + ":  |";
+                visualRepresentation.append("  ").append(i).append(":  |");
             }
             else if(i < 100){
-                visualRepresentation += " " + (i) + ":  |";
+                visualRepresentation.append(" ").append(i).append(":  |");
             }
             else{
-                visualRepresentation += "" + (i) + ":  |";
+                visualRepresentation.append("").append(i).append(":  |");
             }
 
             for(int j = 0; j < elevatorArrayList.size(); j++){
                 if(elevatorArrayList.get(j).getmCurrentFloor() == i){
-                    visualRepresentation += " X |";
+                    visualRepresentation.append(" X |");
                 }
                 else{
-                    visualRepresentation += "   |";
+                    visualRepresentation.append("   |");
                 }
             }
 
-            visualRepresentation += " ";
+            visualRepresentation.append(" ");
 
 //            displays the passengers waiting on the building floor
             for(int k = 0; k < getFloor(i).size(); k++){
-                visualRepresentation += " " + getFloor(i).get(k);
+                visualRepresentation.append(" ").append(getFloor(i).get(k));
             }
 
-            visualRepresentation += "\n";
+            visualRepresentation.append("\n");
         }
 
         for (int i = 0; i < numElevators; i++){
-            visualRepresentation = visualRepresentation + elevatorArrayList.get(i) + "\n";
+            visualRepresentation.append(elevatorArrayList.get(i)).append("\n");
         }
-        return visualRepresentation;
-    }
-
-//    returns true if parameter is equal to the current floor of a list of elevators otherwise return false
-    private boolean spawnFloorEqualsElevatorFloor(int spawnFloor){
-        for (int i = 0; i < numElevators; i++){
-//            System.out.println("Spawn Floor: " + spawnFloor + "\nElevator Floor: "
-//                    + elevatorArrayList.get(i).getmCurrentFloor());
-            if (spawnFloor == elevatorArrayList.get(i).getmCurrentFloor()){
-                return true;
-            }
-        }
-        return false;
+        return visualRepresentation.toString();
     }
 
 //  updates the state of the building by spawning in passengers

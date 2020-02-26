@@ -19,10 +19,6 @@ public class Elevator {
         return mCurrentFloor;
     }
 
-    public ArrayList<Integer> getPassengers(){
-        return passengers;
-    }
-
     enum currentDirection {
         MOVING_UP,
         MOVING_DOWN,
@@ -75,9 +71,10 @@ public class Elevator {
                 if(passengers.size() == 0){
                     mCurrentDirection = currentDirection.NOT_MOVING;
                 }
-                if (mCurrentDirection == currentDirection.NOT_MOVING ||
+                if ((mCurrentDirection == currentDirection.NOT_MOVING ||
                         (floorPassengersUp() && mCurrentDirection == currentDirection.MOVING_UP) ||
-                        (floorPassengersDown() && mCurrentDirection == currentDirection.MOVING_DOWN)){
+                        (floorPassengersDown() && mCurrentDirection == currentDirection.MOVING_DOWN))
+                        && buildingFloor.size() != 0){
                     mCurrentState = currentState.LOADING_PASSENGERS;
                 }
                 else{
@@ -182,7 +179,6 @@ public class Elevator {
                         (floorPassengersUp() && mCurrentDirection == currentDirection.MOVING_UP)){
                     mCurrentState = currentState.DECELERATING;
                 }
-
                 break;
 
             case DECELERATING:
